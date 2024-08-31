@@ -10,7 +10,7 @@ router = APIRouter()
 
 # @router.get("/start_scraping/", dependencies=[Depends(verify_token)])
 @router.get("/start_scraping/")
-def start_scraping(pages: int = 1, proxy: str = None):
+def start_scraping(pages: int = 5, proxy: str = None):
     scraper = Scraper(base_url="https://dentalstall.com/shop/", pages=pages, proxy=proxy)
     storage = DataStorage()
     cache = Cache()
