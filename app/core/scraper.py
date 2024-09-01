@@ -11,21 +11,20 @@ class Scraper:
         self.proxy = {"http": proxy, "https": proxy} if proxy else None
         self.retry_delay = 5  # seconds
 
+    def getUrl(self, page: int):
+        if(page==1):
+            return self.base_url
+        return f"{self.base_url}/page/{page}/"
+
     def scrape(self) -> List[dict]:
         scraped_data = []
         for page in range(1, self.pages + 1):
-            if page==1:
-                url = f"{self.base_url}"
-            else:     
-                url = f"{self.base_url}/page/{page}/"
+            url = self.getUrl(page)
             try:
-                print("url to scrape: ", url)
                 response = self.get_page(url)
                 soup = BeautifulSoup(response.content, "html.parser")
                 products = soup.find_all('div', class_ ='product-inner')
-                #print("all products: ", products)
                 for product in products:
-                    
                     imgtag = product.find('div', attrs={'class':'mf-product-thumbnail'}).find('img')
                     path_to_image = imgtag.get("data-lazy-src")
                     captionDetails = product.find('div', attrs={'class':'mf-product-content'})

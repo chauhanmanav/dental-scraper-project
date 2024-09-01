@@ -1,5 +1,6 @@
 from fastapi import FastAPI
 from app.routers import scraping
+from app.utils.utils import get_host, get_port
 
 app = FastAPI()
 
@@ -8,4 +9,4 @@ app.include_router(scraping.router)
 
 if __name__ == "__main__":
     import uvicorn
-    uvicorn.run(app, host="127.0.0.1", port=8000)
+    uvicorn.run(app, host=get_host(), port=get_port())

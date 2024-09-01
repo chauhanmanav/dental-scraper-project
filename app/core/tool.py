@@ -13,7 +13,6 @@ class ScrapingTool:
     def run(self):
         data = self.scraper.scrape()
         updated_data = []
-        print("scraped data: ", data)
         for item in data:
             if not self.cache.is_cached(item["product_title"], item["product_price"]):
                 updated_data.append(item)
