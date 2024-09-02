@@ -30,4 +30,11 @@ To start this project run
 ## Notes
 - Images are stored in the images directory
 - The scraped data is stored in data/scraped_data.json
+- AUTH token used is static, need to use the same (mentioned in /config/settings.py ).
 
+## Usage
+- Once the project is started, we can execute the following curl command:
+```bash
+  curl --location 'http://127.0.0.1:8088/start_scraping/?pages=1' \
+--header 'Authorization: Bearer <token>'
+```
